@@ -64,5 +64,59 @@ var ntc = (...args) => String.fromCharCode(...args)
 var ntl = (...args) => String.fromCharCode(...args.map((v) => v + cca('a')))
 var ntu = (...args) => String.fromCharCode(...args.map((v) => v + cca('A')))
 var ent = (obj) => Object.entries(obj)
+class Heap {
+  constructor(compareFn = (a, b) => a - b) {
+    this.items = [] // array as complete binary tree
+    this.compareFn = compareFn
+  }
+  push(item) {
+    // O(log(N))
+    var { items, compareFn } = this
+    items.push(item)
+    var idx = items.length - 1
+    var parIdx = Math.floor((idx - 1) / 2)
+    while (idx > 0 && compareFn(items[idx], items[parIdx]) < 0) {
+      // cur < parent / cur - parent < 0 / swim up
+      ;[items[idx], items[parIdx]] = [items[parIdx], items[idx]]
+      idx = parIdx
+      parIdx = Math.floor((idx - 1) / 2)
+    }
+  }
+  pop() {
+    // O(log(N))
+    var { items, compareFn } = this
+    if (items.length === 0) return undefined
+      ;[items[0], items[items.length - 1]] = [items[items.length - 1], items[0]]
+    var res = items.pop()
+    var idx = 0
+    var min = idx
+    while (idx < items.length) {
+      // sink down
+      var leftIdx = idx * 2 + 1
+      var rightIdx = leftIdx + 1
+      if (
+        (leftIdx < items.length && compareFn(items[idx], items[leftIdx]) > 0) ||
+        (rightIdx < items.length && compareFn(items[idx], items[rightIdx]) > 0)
+      ) {
+        if (rightIdx < items.length) {
+          min =
+            compareFn(items[leftIdx], items[rightIdx]) < 0 ? leftIdx : rightIdx
+        } else {
+          min = leftIdx
+        }
+      }
+      if (min === idx) break
+        ;[items[idx], items[min]] = [items[min], items[idx]]
+      idx = min
+    }
+    return res
+  }
+  top() {
+    return this.items[0]
+  }
+  size() {
+    return this.items.length
+  }
+}
 
 
