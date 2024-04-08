@@ -57,3 +57,10 @@ const DIRS = [
   [0, 1],
 ]
 var len = (obj) => obj.length ?? obj.size
+var ctn = (char) => char.charCodeAt()
+var ltn = (char) => char.charCodeAt() - 'a'.charCodeAt()
+var utn = (char) => char.charCodeAt() - 'A'.charCodeAt()
+var ntc = (...args) => String.fromCharCode(...args)
+var ntl = (...args) => String.fromCharCode(...args.map((v) => v + cca('a')))
+var ntu = (...args) => String.fromCharCode(...args.map((v) => v + cca('A')))
+
