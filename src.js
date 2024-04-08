@@ -63,4 +63,6 @@ var utn = (char) => char.charCodeAt() - 'A'.charCodeAt()
 var ntc = (...args) => String.fromCharCode(...args)
 var ntl = (...args) => String.fromCharCode(...args.map((v) => v + cca('a')))
 var ntu = (...args) => String.fromCharCode(...args.map((v) => v + cca('A')))
+var ent = (obj) => Object.entries(obj)
+
 
