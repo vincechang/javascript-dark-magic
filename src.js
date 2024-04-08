@@ -43,7 +43,7 @@ const ga = (length, initial) => [...Array(length)].fill(initial)
 const gm = (row, col, initial) =>
   [...Array(row)].map(() => Array(col).fill(initial))
 const asc = (a, b) => a - b
-const dec = (a, b) => b - a
+const dsc = (a, b) => b - a
 Array.prototype.sum = function () {
   return this.reduce((a, v) => a + v, 0)
 }
