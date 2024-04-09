@@ -4,33 +4,69 @@ const F = false
 const log = console.log
 const ff = (end, callback, increment = 1) => {
   return () => {
-    for (let i = 0; i < end; i += increment) {
-      const res = callback(i)
-      if (res !== undefined) return res
+    if(Array.isArray(end)) {
+      const array = end
+      end = len(array)
+      for (let i = 0; i < end; i += increment) {
+        const res = callback(i, array[i])
+        if (res !== undefined) return res
+      }
+    } else {
+      for (let i = 0; i < end; i += increment) {
+        const res = callback(i)
+        if (res !== undefined) return res
+      }
     }
   }
 }
 const f1 = (end, callback, increment = 1) => {
   return () => {
-    for (let i = 1; i <= end; i += increment) {
-      const res = callback(i)
-      if (res !== undefined) return res
+    if(Array.isArray(end)) {
+      const array = end
+      end = len(array)
+      for (let i = 1; i <= end; i += increment) {
+        const res = callback(i, array[i])
+        if (res !== undefined) return res
+      }
+    } else {
+      for (let i = 1; i <= end; i += increment) {
+        const res = callback(i)
+        if (res !== undefined) return res
+      }
     }
   }
 }
 const rr = (end, callback, decrement = 1) => {
   return () => {
-    for (let i = end - 1; i >= 0; i -= decrement) {
-      const res = callback(i)
-      if (res !== undefined) return res
+    if(Array.isArray(end)) {
+      const array = end
+      end = len(array)
+      for (let i = end - 1; i >= 0; i -= decrement) {
+        const res = callback(i, array[i])
+        if (res !== undefined) return res
+      }
+    } else {
+      for (let i = end - 1; i >= 0; i -= decrement) {
+        const res = callback(i)
+        if (res !== undefined) return res
+      }
     }
   }
 }
 const r1 = (end, callback, decrement = 1) => {
   return () => {
-    for (let i = end; i >= 1; i -= decrement) {
-      const res = callback(i)
-      if (res !== undefined) return res
+    if(Array.isArray(end)) {
+      const array = end
+      end = len(array)
+      for (let i = end; i >= 1; i -= decrement) {
+        const res = callback(i, array[i])
+        if (res !== undefined) return res
+      }
+    } else {
+      for (let i = end; i >= 1; i -= decrement) {
+        const res = callback(i)
+        if (res !== undefined) return res
+      }
     }
   }
 }
