@@ -22,9 +22,37 @@ make moral judgments, but rather, we'll experiment with this idea to explore it 
 Please note that the implementation itself is experimental and has not undergone rigorous testing. Some aspects may be
 anti-patterns.
 
+## Usage
+
+Copy and paste the minimized code wherever you want to use it.
+
 ## Ars Utility
 
+### Abbreviations
+
+```javascript
+UND           // euqals to `undefined`
+INT           // equals to `Infinity`
+log('hello')  // equals to `console.log()`
+T             // equals to `true`
+F             // equals to `false`
+mmin()        // equals to `Math.min()`
+mmax()        // euqals to `Math.max()`
+floor()       // euqals to `Math.floor()`
+ceil()        // euqals to `Math.ceil()`
+```
+
 ### Loop
+
+A concise way to iterate through the entire array:
+
+```javascript
+for(var i in array) {
+  log(array[i])
+}
+```
+
+For any reason, if you want to use a callback to do this:
 
 ```javascript
 ff(3, i => (
@@ -41,7 +69,17 @@ ff(N, i => (
   })()
 ))() // 0 0, 0 1, 1 0, 1 1, 2 0, 2 1
 ```
-The Loop can not be break. But it can be returned.
+
+If the first parameter `end` is an object (such as an array), the end will be the length of the object.
+
+```javascript
+const array = [1, 3, 5]
+ff(array, (i, v) => (
+  log(i, v)
+)) // 0 1, 1 3, 2 5 
+```
+
+The Loop callback can not be break. But it can be returned.
 
 ```javascript
 var ret =
@@ -51,6 +89,14 @@ ff(3, i => (
   })()
 ))()
 log(ret) // 'break'
+
+var ret =
+ff(3, i => (
+  ff(2, j => {
+    if(i === 1 && j === 1) return 'return value'
+  })()
+))()
+if(ret !== UND) return ret
 ```
 
 ## Ars Array
