@@ -1,3 +1,4 @@
+const UND = undefined
 const INF = Infinity
 const T = true
 const F = false
