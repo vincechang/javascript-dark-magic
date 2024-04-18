@@ -5,7 +5,7 @@ const F = false
 const log = console.log
 const ff = (end, callback, increment = 1) => {
   return () => {
-    if(Array.isArray(end)) {
+    if (Array.isArray(end)) {
       const array = end
       end = len(array)
       for (let i = 0; i < end; i += increment) {
@@ -22,7 +22,7 @@ const ff = (end, callback, increment = 1) => {
 }
 const f1 = (end, callback, increment = 1) => {
   return () => {
-    if(Array.isArray(end)) {
+    if (Array.isArray(end)) {
       const array = end
       end = len(array)
       for (let i = 1; i <= end; i += increment) {
@@ -39,7 +39,7 @@ const f1 = (end, callback, increment = 1) => {
 }
 const rr = (end, callback, decrement = 1) => {
   return () => {
-    if(Array.isArray(end)) {
+    if (Array.isArray(end)) {
       const array = end
       end = len(array)
       for (let i = end - 1; i >= 0; i -= decrement) {
@@ -56,7 +56,7 @@ const rr = (end, callback, decrement = 1) => {
 }
 const r1 = (end, callback, decrement = 1) => {
   return () => {
-    if(Array.isArray(end)) {
+    if (Array.isArray(end)) {
       const array = end
       end = len(array)
       for (let i = end; i >= 1; i -= decrement) {
@@ -93,25 +93,26 @@ const DIRS = [
   [0, -1],
   [0, 1],
 ]
-var len = (obj) => obj.length ?? obj.size
-var ctn = (char) => char.charCodeAt()
-var ltn = (char) => char.charCodeAt() - 'a'.charCodeAt()
-var utn = (char) => char.charCodeAt() - 'A'.charCodeAt()
-var ntc = (...args) => String.fromCharCode(...args)
-var ntl = (...args) => String.fromCharCode(...args.map((v) => v + cca('a')))
-var ntu = (...args) => String.fromCharCode(...args.map((v) => v + cca('A')))
-var ent = (obj) => Object.entries(obj)
+const len = (obj) => obj.length ?? obj.size
+const ctn = (char) => char.charCodeAt();
+const ltn = (char) => char.charCodeAt() - 'a'.charCodeAt();
+const utn = (char) => char.charCodeAt() - 'A'.charCodeAt();
+const ntc = (...args) => String.fromCharCode(...args);
+const ntl = (...args) => String.fromCharCode(...args.map((v) => v + cca('a')))
+const ntu = (...args) => String.fromCharCode(...args.map((v) => v + cca('A')))
+const ent = (obj) => Object.entries(obj)
 class Heap {
   constructor(compareFn = (a, b) => a - b) {
     this.items = [] // array as complete binary tree
     this.compareFn = compareFn
   }
+
   push(item) {
     // O(log(N))
-    var { items, compareFn } = this
+    let { items, compareFn } = this
     items.push(item)
-    var idx = items.length - 1
-    var parIdx = Math.floor((idx - 1) / 2)
+    let idx = items.length - 1
+    let parIdx = Math.floor((idx - 1) / 2)
     while (idx > 0 && compareFn(items[idx], items[parIdx]) < 0) {
       // cur < parent / cur - parent < 0 / swim up
       ;[items[idx], items[parIdx]] = [items[parIdx], items[idx]]
@@ -119,18 +120,19 @@ class Heap {
       parIdx = Math.floor((idx - 1) / 2)
     }
   }
+
   pop() {
     // O(log(N))
-    var { items, compareFn } = this
+    let { items, compareFn } = this
     if (items.length === 0) return undefined
       ;[items[0], items[items.length - 1]] = [items[items.length - 1], items[0]]
-    var res = items.pop()
-    var idx = 0
-    var min = idx
+    const res = items.pop()
+    let idx = 0
+    let min = idx
     while (idx < items.length) {
       // sink down
-      var leftIdx = idx * 2 + 1
-      var rightIdx = leftIdx + 1
+      const leftIdx = idx * 2 + 1
+      const rightIdx = leftIdx + 1
       if (
         (leftIdx < items.length && compareFn(items[idx], items[leftIdx]) > 0) ||
         (rightIdx < items.length && compareFn(items[idx], items[rightIdx]) > 0)
@@ -148,9 +150,11 @@ class Heap {
     }
     return res
   }
+
   top() {
     return this.items[0]
   }
+
   size() {
     return this.items.length
   }
