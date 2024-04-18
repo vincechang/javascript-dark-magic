@@ -94,13 +94,14 @@ const DIRS = [
   [0, 1],
 ]
 const len = (obj) => obj.length ?? obj.size
-const ctn = (char) => char.charCodeAt();
-const ltn = (char) => char.charCodeAt() - 'a'.charCodeAt();
-const utn = (char) => char.charCodeAt() - 'A'.charCodeAt();
-const ntc = (...args) => String.fromCharCode(...args);
+const lc = 'abcdefghijklmnopqrstuvwxyz'
+const uc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+const cca = (char, index) => char.charCodeAt(index)
+const fcc = (...args) => String.fromCharCode(...args)
 const ntl = (...args) => String.fromCharCode(...args.map((v) => v + cca('a')))
 const ntu = (...args) => String.fromCharCode(...args.map((v) => v + cca('A')))
 const ent = (obj) => Object.entries(obj)
+
 class Heap {
   constructor(compareFn = (a, b) => a - b) {
     this.items = [] // array as complete binary tree
